@@ -10,7 +10,7 @@
                             "no": 1,
                             "condition": "Business Type is incorrect",
                             "type": "mandatory",
-                            "message": "According to submitted documents, you have selected incorrect company type. Please  correct it."
+                            "message": " According to submitted documents, you have selected an incorrect company type. Please correct it."
                         }
                     ]
                 },
@@ -76,7 +76,7 @@
                             "id": 1,
                             "condition": "Mobile Ownership Confirmation is not related to the contact number in the Declaration Tab.",
                             "type": "mandatory",
-                            "message": "Your Mobile Number Ownership Confirmation From Service Provider or Last Month Bill, document should be related to the number you mentioned in the Declaration Tab."
+                            "message": "Your Mobile Number Ownership Confirmation From Service Provider or Last Month Bill, the document should be related to the number you mentioned in the Declaration Tab."
                         }
                     ]
                 },
