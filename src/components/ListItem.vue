@@ -1,11 +1,11 @@
 <template>
   <div
-    class="bg-gray-100 px-8 py-4 flex items-center border-b border-gray-300 hover:bg-gray-200 cursor-pointer"
+    class="bg-gray-100 px-8 py-2 flex items-center border-b border-gray-300 cursor-pointer hover:bg-gray-200"
     @click="changeTheCheckBoxValue()"
   >
     <input
       type="checkbox"
-      class="form-checkbox h-5 w-5 text-blue-600"
+      class="form-checkbox h-5 w-5"
       v-model="checkboxValue"
     />
     <div class="flex ml-4">
@@ -14,13 +14,13 @@
         class="w-10 h-10 object-cover rounded object-top"
       />
       <div class="flex flex-col pl-4">
-        <h2 class="font-normal text-sm">{{ item.condition }}</h2>
+        <h2 class="font-normal text-sm text-gray-800 font-semibold">
+          {{ item.condition }}
+        </h2>
         <h3 class="text-gray-700 text-sm">
           {{ sectionName }}
         </h3>
-        <div
-          class="uppercase text-xs text-gray-600 leading-tight font-semibold"
-        >
+        <div class="uppercase text-xs text-gray-600 font-semibold">
           {{ tabName }}
         </div>
       </div>

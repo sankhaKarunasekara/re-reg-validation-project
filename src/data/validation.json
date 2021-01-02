@@ -8,9 +8,9 @@
                     "items": [
                         {
                             "no": 1,
-                            "condition": "Check the correct type of business is selected by looking at their BRC",
+                            "condition": "Business Type is incorrect",
                             "type": "mandatory",
-                            "message": "the correct type of business is not selected according to your BRC"
+                            "message": "According to submitted documents, you have selected incorrect company type. Please  correct it."
                         }
                     ]
                 },
@@ -18,51 +18,10 @@
                     "name": "TIN / VAT / Permit / Merchant Shipping License Information",
                     "items": [
                         {
-                            "no": 1,
-                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "id": 1,
+                            "condition": "VAT Number has a dash",
                             "type": "mandatory",
-                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
-                        }
-                    ]
-                },
-                {
-                    "name": "Business / Individual Details",
-                    "items": [
-                        {
-                            "no": 1,
-                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
-                            "type": "mandatory",
-                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
-                        }
-                    ]
-                },
-                {
-                    "name": "Business / Individual Details",
-                    "items": [
-                        {
-                            "no": 1,
-                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
-                            "type": "mandatory",
-                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
-                        },
-                        {
-                            "id": 2,
-                            "section": "TIN / VAT / Permit / Merchant Shipping License Information",
-                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
-                            "type": "mandatory",
-                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
-                        },
-                        {
-                            "id": 3,
-                            "condition": "Check - in VAT number",
-                            "type": "mandatory",
-                            "message": "remove the - in the VAT number"
-                        },
-                        {
-                            "id": 4,
-                            "condition": "VAT Number",
-                            "type": "mandatory",
-                            "message": "remove the - in the VAT number"
+                            "message": "remove the \"-\" in the VAT number, you entered in TIN / VAT / Permit / Merchant Shipping License Information"
                         }
                     ]
                 }
@@ -83,7 +42,18 @@
                     ]
                 },
                 {
-                    "name": "Consent from the premises owner :",
+                    "name": "CEB or LECO Electricity Bill of Company",
+                    "items": [
+                        {
+                            "id": 1,
+                            "condition": "Electricity Bill Not Uploaded",
+                            "type": "mandatory",
+                            "message": "You have not uploaded the CEB or LECO Electricity Bill of your Company. Please upload the document."
+                        }
+                    ]
+                },
+                {
+                    "name": "Consent from the premises owner",
                     "items": [
                         {
                             "id": 1,
@@ -98,9 +68,15 @@
                     "items": [
                         {
                             "id": 1,
-                            "condition": "NOT UPLOADED",
+                            "condition": "Mobile Ownership Confirmation Not Uploaded.",
                             "type": "mandatory",
                             "message": "You have not uploaded the Mobile Number Ownership Confirmation From Service Provider or Last Month Bill. Please upload it."
+                        },
+                        {
+                            "id": 1,
+                            "condition": "Mobile Ownership Confirmation is not related to the contact number in the Declaration Tab.",
+                            "type": "mandatory",
+                            "message": "Your Mobile Number Ownership Confirmation From Service Provider or Last Month Bill, document should be related to the number you mentioned in the Declaration Tab."
                         }
                     ]
                 },

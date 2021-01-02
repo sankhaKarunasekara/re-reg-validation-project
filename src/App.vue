@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="bg-grey-100">
     <div
-      id="app"
       class="h-screen w-screen bg-indigo-400 overflow-hidden absolute flex items-center"
     >
       <div
@@ -16,7 +15,8 @@
       ></div>
     </div>
 
-    <div class="container mx-auto h-screen py-16 px-8 relative">
+    <div class="container mx-auto h-screen pt-16 pb-16 px-8 relative">
+      <!-- TODO: add a heading here-->
       <div
         class="flex w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl"
       >
@@ -56,7 +56,8 @@
             </p>
             <div class="mt-6 flex">
               <button
-                class="bg-indigo-500 text-white py-2 text-sm px-3 rounded focus:outline-none"
+                class="bg-indigo-500 text-white py-2 text-sm px-3 rounded focus:outline-none bg-indigo-300 cursor-pointer"
+                @click="openIssuesExcel()"
               >
                 New Issue
               </button>
@@ -92,6 +93,7 @@
                     :section-name="section.name"
                     :item="item"
                     @record-checkbox-value="recordCheckboxValue"
+                    :key="componentKey"
                   />
                 </div>
               </div>
@@ -110,25 +112,33 @@
                 you can copy and paste it in the email body
               </h2>
             </div>
-            <!-- <button
-              class="bg-indigo-600 text-white py-2 text-sm px-3 rounded focus:outline-none"
+            <button
+              @click="clearAll()"
+              class="bg-indigo-600 text-white py-2 text-sm px-3 rounded focus:outline-none hover:bg-indigo-400 shadow cursor-pointer"
             >
-              New Task
-            </button> -->
+              Clear All
+            </button>
           </div>
           <div class="p-8 flex flex-1 items-start overflow-auto">
-            <div class="flex-1">
+            <div class="flex-1 h-full">
               <div
-                class="h-screen w-full bg-transparent text-black mt-2 justify-between"
+                class="h-full w-full bg-transparent text-black mt-2 justify-between"
               >
                 <textarea
                   v-model="mailtextbox"
+                  style="width: 100%; height: 100%; box-sizing: border-box"
                   placeholder="Message..."
-                  class="w-full p-2 font-serif focus:outline-none focus:ring focus:border-blue-300 border-blue-100 border shadow text-sm rounded-lg resize-none bg-white h-full"
+                  class="w-full p-2 focus:outline-none focus:ring focus:border-blue-300 border-blue-100 border shadow resize-none text-base rounded-sm box-border bg-white"
                 ></textarea>
               </div>
             </div>
           </div>
+          <button
+            @click="copy(mailtextbox)"
+            class="bg-indigo-600 m-1 text-white font-semibold py-2 text-sm px-3 rounded shadow focus:outline-none hover:bg-indigo-500 shadow cursor-pointer"
+          >
+            Copy
+          </button>
         </div>
       </div>
     </div>
@@ -219,6 +229,7 @@ export default {
       checkedItemsList: [],
       mailtextbox: "",
       search: "",
+      componentKey: 0,
     };
   },
 
@@ -271,6 +282,28 @@ export default {
         .concat(` ${tabName} ${sectionName}`)
         .toLowerCase()
         .includes(this.search.toLowerCase());
+    },
+
+    clearAll: function () {
+      this.search = "";
+      this.mailtextbox = "";
+      this.checkedItemsList = [];
+      this.forceRerender();
+    },
+
+    forceRerender() {
+      this.componentKey += 1;
+    },
+
+    openIssuesExcel() {
+      window.open(
+        "https://docs.google.com/spreadsheets/d/1SDsQ9muuxrvFF2QRCQ48KONORqwmimDOc84obW0z1pE/edit#gid=0",
+        "_blank"
+      );
+    },
+
+    async copy(s) {
+      await navigator.clipboard.writeText(s);
     },
   },
 };
