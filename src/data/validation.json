@@ -1,0 +1,121 @@
+{
+    "tabs": [
+        {
+            "tab_name": "Basic",
+            "sections": [
+                {
+                    "name": "Business / Individual Details",
+                    "items": [
+                        {
+                            "no": 1,
+                            "condition": "Check the correct type of business is selected by looking at their BRC",
+                            "type": "mandatory",
+                            "message": "the correct type of business is not selected according to your BRC"
+                        }
+                    ]
+                },
+                {
+                    "name": "TIN / VAT / Permit / Merchant Shipping License Information",
+                    "items": [
+                        {
+                            "no": 1,
+                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "type": "mandatory",
+                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
+                        }
+                    ]
+                },
+                {
+                    "name": "Business / Individual Details",
+                    "items": [
+                        {
+                            "no": 1,
+                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "type": "mandatory",
+                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
+                        }
+                    ]
+                },
+                {
+                    "name": "Business / Individual Details",
+                    "items": [
+                        {
+                            "no": 1,
+                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "type": "mandatory",
+                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
+                        },
+                        {
+                            "id": 2,
+                            "section": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "condition": "TIN / VAT / Permit / Merchant Shipping License Information",
+                            "type": "mandatory",
+                            "message": "Some of the information is missing, you need to fill this section according to the details of your VAT certificate."
+                        },
+                        {
+                            "id": 3,
+                            "condition": "Check - in VAT number",
+                            "type": "mandatory",
+                            "message": "remove the - in the VAT number"
+                        },
+                        {
+                            "id": 4,
+                            "condition": "VAT Number",
+                            "type": "mandatory",
+                            "message": "remove the - in the VAT number"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tab_name": "Attachments",
+            "sections": [
+                {
+                    "name": "VAT Certificate",
+                    "items": [
+                        {
+                            "id": 1,
+                            "condition": "Deactivated VAT",
+                            "type": "mandatory",
+                            "message": "Your VAT number has been deactivated. Refer: http://www.ird.gov.lk/en/publications/VAT_Inactive_List/VAT_Deactive_20_11_2020.pdf \n please contact the Inland Revenue Department and obtain a VAT certificate and upload it to the system. Then fill the TIN / VAT / Permit / Merchant Shipping License Information section in the Basic Tab with your new VAT details."
+                        }
+                    ]
+                },
+                {
+                    "name": "Consent from the premises owner :",
+                    "items": [
+                        {
+                            "id": 1,
+                            "condition": "No consent letter",
+                            "type": "mandatory",
+                            "message": "Please upload a No objection letter from the premises owner."
+                        }
+                    ]
+                },
+                {
+                    "name": "Mobile Number Ownership Confirmation From Service Provider or Last Month Bill",
+                    "items": [
+                        {
+                            "id": 1,
+                            "condition": "NOT UPLOADED",
+                            "type": "mandatory",
+                            "message": "You have not uploaded the Mobile Number Ownership Confirmation From Service Provider or Last Month Bill. Please upload it."
+                        }
+                    ]
+                },
+                {
+                    "name": "Marriage Certificate or Birth Certificate or Parent company proof or Affidavit",
+                    "items": [
+                        {
+                            "id": 1,
+                            "condition": "UPLOADED UPSIDE DOWN",
+                            "type": "mandatory",
+                            "message": "You have uploaded the marriage/birth certificate upside down. Please Upload it in the correct orientation."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
