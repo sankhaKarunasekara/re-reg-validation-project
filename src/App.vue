@@ -48,20 +48,25 @@
                 </svg>
               </button>
             </div> -->
-            <h1 class="font-medium text-lg mt-6">
-              Re Registration Issues List
-            </h1>
-            <p class="text-gray-600 text-sm">
-              search and find a issue and click the check box.
-            </p>
+            <div class="flex">
+              <div class="mr-auto">
+                <h1 class="font-medium text-lg mt-6">
+                  Re Registration Issues List
+                </h1>
+                <p class="text-gray-600 text-sm">
+                  search and find a issue and click the check box.
+                  <a
+                    href="#"
+                    class="text-blue-800 font-semibold"
+                    @click="openIssuesExcel()"
+                  >
+                    click here to add a new issue.</a
+                  >
+                </p>
+              </div>
+            </div>
             <div class="mt-6 flex">
-              <button
-                class="bg-indigo-500 text-white py-2 text-sm px-3 rounded focus:outline-none bg-indigo-300 cursor-pointer"
-                @click="openIssuesExcel()"
-              >
-                New Issue
-              </button>
-              <div class="relative ml-auto flex-1 pl-8 sm:block hidden">
+              <div class="relative ml-auto flex-1 sm:block hidden">
                 <input
                   placeholder="Search"
                   type="text"
@@ -81,6 +86,12 @@
                   <path d="M21 21l-4.35-4.35" />
                 </svg>
               </div>
+              <button
+                class="bg-indigo-500 ml-8 sm:block hidden text-white py-2 text-sm px-3 rounded focus:outline-none bg-indigo-300 cursor-pointer"
+                @click="clearSearch()"
+              >
+                Clear Search
+              </button>
             </div>
           </div>
           <div class="overflow-auto flex-grow">
@@ -289,6 +300,10 @@ export default {
       this.mailtextbox = "";
       this.checkedItemsList = [];
       this.forceRerender();
+    },
+
+    clearSearch() {
+      this.search = "";
     },
 
     forceRerender() {
