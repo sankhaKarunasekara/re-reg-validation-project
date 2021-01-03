@@ -70,6 +70,7 @@
                 <input
                   placeholder="Search"
                   type="text"
+                  ref="search"
                   v-model="search"
                   class="w-full border rounded border-gray-400 h-full focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
                 />
@@ -95,19 +96,15 @@
             </div>
           </div>
           <div class="overflow-auto flex-grow">
-            <div v-for="tab in validationQuestions.tabs" :key="tab.tab_name">
-              <div v-for="section in tab.sections" :key="section.name">
-                <div v-for="item in section.items" :key="item.name">
-                  <ListItem
-                    v-if="isSearch(item, tab.tab_name, section.name)"
-                    :tab-name="tab.tab_name"
-                    :section-name="section.name"
-                    :item="item"
-                    @record-checkbox-value="recordCheckboxValue"
-                    :key="componentKey"
-                  />
-                </div>
-              </div>
+            <div v-for="item in validationQuestions" :key="item.timestamp">
+              <ListItem
+                v-if="isSearch(item, item.tab, item.section)"
+                :tab-name="item.tab"
+                :section-name="item.section"
+                :item="item"
+                @record-checkbox-value="recordCheckboxValue"
+                :key="componentKey"
+              />
             </div>
           </div>
         </div>
@@ -135,6 +132,12 @@
               <div
                 class="h-full w-full bg-transparent text-black mt-2 justify-between"
               >
+                <!-- <vue-editor
+                  style="width: 100%; height: 100%; box-sizing: border-box"
+                  placeholder="Message..."
+                  class="w-full p-2 focus:outline-none focus:ring focus:border-blue-300 border-blue-100 border shadow resize-none text-base rounded-sm box-border bg-white"
+                  v-model="mailtextbox"
+                ></vue-editor> -->
                 <textarea
                   v-model="mailtextbox"
                   style="width: 100%; height: 100%; box-sizing: border-box"
@@ -193,16 +196,24 @@
 
 <script>
 import ListItem from "./components/ListItem.vue";
-import validationQuestions from "@/data/validation.json";
+// import validationQuestions from "@/data/validation.json";
+import axios from "axios";
+// import { VueEditor } from "vue2-editor";
+
+// var gsheet_url =
+//   "https://spreadsheets.google.com/feeds/list/1eNmGC4mZpIGx9vyL_Y0m0wEvsnlREGYoj04LH9atoTg/1/public/values?alt=json";
+let gsheet_url =
+  "https://spreadsheets.google.com/feeds/list/10MKW1D4HVBARRYZMzgksxZ66uZxEG3fvS3L20GyZagc/1/public/values?alt=json";
 
 export default {
   name: "App",
 
   components: {
     ListItem,
+    // VueEditor,
   },
 
-  mounted() {
+  async mounted() {
     const allElements = document.querySelectorAll(
       '*:not([theme-button]):not([class*="gray"])'
     );
@@ -232,12 +243,32 @@ export default {
         changeTheme(e.target.getAttribute("theme-button"));
       });
     });
+
+    try {
+      const response = await axios.get(gsheet_url);
+      console.log(response);
+      const self = this;
+      response.data.feed.entry.forEach(function (value) {
+        let entry = {
+          tab: value.gsx$tab.$t,
+          section: value.gsx$section.$t,
+          issue: value.gsx$issue.$t,
+          type: value.gsx$type.$t,
+          message: value.gsx$message.$t,
+          timestamp: value.gsx$timestamp.$t,
+        };
+        self.validationQuestions.push(entry);
+      });
+    } catch (e) {
+      alert(e);
+    }
   },
 
   data() {
     return {
-      validationQuestions: validationQuestions,
+      validationQuestions: [],
       checkedItemsList: [],
+      googleQuestions: [],
       mailtextbox: "",
       search: "",
       componentKey: 0,
@@ -284,7 +315,7 @@ export default {
     },
 
     generateAListItem(i, item) {
-      let text = `${i + 1}. ${item.message}\n`;
+      let text = `${i + 1}. ${item.message}\n\n`;
       return text;
     },
 
@@ -304,6 +335,7 @@ export default {
 
     clearSearch() {
       this.search = "";
+      this.$refs.search.focus();
     },
 
     forceRerender() {
@@ -312,7 +344,7 @@ export default {
 
     openIssuesExcel() {
       window.open(
-        "https://docs.google.com/spreadsheets/d/1SDsQ9muuxrvFF2QRCQ48KONORqwmimDOc84obW0z1pE/edit#gid=0",
+        "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdp1PvOefsd0v5l7A9O19LqcgK8vA_rnmQjd30ymSDEnBNhVw/formResponse",
         "_blank"
       );
     },

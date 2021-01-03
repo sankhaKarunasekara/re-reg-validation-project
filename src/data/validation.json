@@ -70,7 +70,7 @@
                             "id": 1,
                             "condition": "Mobile Ownership Confirmation Not Uploaded.",
                             "type": "mandatory",
-                            "message": "You have not uploaded the Mobile Number Ownership Confirmation From Service Provider or Last Month Bill. Please upload it."
+                            "message": "The \"Mobile Number Ownership Confirmation From Service Provider or Last Month Bill\" attachment has not uploaded. Please upload the certification/ bill of the mobile number which has been entered for the SMS facility  under the Declaration Tab."
                         },
                         {
                             "id": 1,

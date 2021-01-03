@@ -15,7 +15,7 @@
       />
       <div class="flex flex-col pl-4">
         <h2 class="font-normal text-sm text-gray-800 font-semibold">
-          {{ item.condition }}
+          {{ item.issue }}
         </h2>
         <h3 class="text-gray-700 text-sm">
           {{ sectionName }}
