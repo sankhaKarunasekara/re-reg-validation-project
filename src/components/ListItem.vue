@@ -9,10 +9,21 @@
       v-model="checkboxValue"
     />
     <div class="flex ml-4">
-      <img
+      <!-- <img
         src="../assets/images/critical.png"
         class="w-10 h-10 object-cover rounded object-top"
+      /> -->
+      <img
+        src="../assets/images/email.png"
+        v-if="tabName == 'Email'"
+        class="w-10 h-10 object-cover rounded object-top"
       />
+      <img
+        src="../assets/images/critical.png"
+        v-else
+        class="w-10 h-10 object-cover rounded object-top"
+      />
+
       <div class="flex flex-col pl-4">
         <h2 class="font-normal text-sm text-gray-800 font-semibold">
           {{ item.issue }}

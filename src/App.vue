@@ -296,15 +296,48 @@ export default {
 
     generateListItemsString: function () {
       let i = 0;
-      for (i = 0; i < this.checkedItemsList.length; i++)
+
+      const listItems = this.checkedItemsList.filter(
+        (item) =>
+          !(
+            (item.tabName == "Email" && item.sectionName == "Ending") ||
+            (item.tabName == "Email" && item.sectionName == "Start")
+          )
+      );
+
+      //Starts
+      const starts = this.checkedItemsList.filter(
+        (item) => item.tabName == "Email" && item.sectionName == "Start"
+      );
+
+      if (starts.length != 0) {
+        for (i = 0; i < starts.length; i++) {
+          this.mailtextbox = this.mailtextbox.concat(
+            this.generateAListItem(i, starts[i])
+          );
+        }
+      }
+
+      //List Items
+      for (i = 0; i < listItems.length; i++) {
         this.mailtextbox = this.mailtextbox.concat(
-          this.generateAListItem(i, this.checkedItemsList[i])
+          this.generateAListItem(i, listItems[i])
         );
+      }
+
+      //Endings
+      const endings = this.checkedItemsList.filter(
+        (item) => item.tabName == "Email" && item.sectionName == "Ending"
+      );
+
+      if (endings.length != 0) {
+        this.mailtextbox = this.mailtextbox.concat(endings[0].message);
+      }
     },
 
     isTheSameItem(item1, item2, tabName, sectionName) {
       if (
-        item1.no == item2.no &&
+        item1.issue == item2.issue &&
         item1.tabName == tabName &&
         item1.sectionName == sectionName
       ) {
@@ -315,7 +348,14 @@ export default {
     },
 
     generateAListItem(i, item) {
-      let text = `${i + 1}. ${item.message}\n\n`;
+      let text = "";
+
+      if (item.tab == "Email") {
+        text = `${item.message}\n`;
+      } else {
+        text = `${i + 1}. ${item.message}\n\n`;
+      }
+
       return text;
     },
 
