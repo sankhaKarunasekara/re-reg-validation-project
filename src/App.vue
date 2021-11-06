@@ -1,24 +1,73 @@
 <template>
   <div id="app" class="bg-grey-100">
     <div
-      class="h-screen w-screen bg-indigo-400 overflow-hidden absolute flex items-center"
+      class="
+        h-screen
+        w-screen
+        bg-indigo-400
+        overflow-hidden
+        absolute
+        flex
+        items-center
+      "
     >
       <div
-        class="w-screen h-64 absolute top-0 opacity-50 left-0 -my-40 -mx-64 bg-indigo-300 rounded-full"
+        class="
+          w-screen
+          h-64
+          absolute
+          top-0
+          opacity-50
+          left-0
+          -my-40
+          -mx-64
+          bg-indigo-300
+          rounded-full
+        "
       ></div>
       <div class="w-64 h-64 -mx-32 bg-indigo-300 opacity-50 rounded-full"></div>
       <div
-        class="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-indigo-300 rounded-full"
+        class="
+          w-64
+          h-64
+          ml-auto
+          relative
+          opacity-50
+          -mr-32
+          bg-indigo-300
+          rounded-full
+        "
       ></div>
       <div
-        class="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-indigo-300 rounded-full"
+        class="
+          w-screen
+          h-64
+          absolute
+          opacity-50
+          bottom-0
+          right-0
+          -my-40
+          -mx-64
+          bg-indigo-300
+          rounded-full
+        "
       ></div>
     </div>
 
     <div class="container mx-auto h-screen pt-16 pb-16 px-8 relative">
       <!-- TODO: add a heading here-->
       <div
-        class="flex w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl"
+        class="
+          flex
+          w-full
+          rounded-lg
+          h-full
+          lg:overflow-hidden
+          overflow-auto
+          lg:flex-row
+          flex-col
+          shadow-2xl
+        "
       >
         <div class="lg:w-1/2 bg-white text-gray-800 flex flex-col">
           <div class="p-8 shadow-md relative bg-white">
@@ -72,7 +121,17 @@
                   type="text"
                   ref="search"
                   v-model="search"
-                  class="w-full border rounded border-gray-400 h-full focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
+                  class="
+                    w-full
+                    border
+                    rounded
+                    border-gray-400
+                    h-full
+                    focus:outline-none
+                    pl-4
+                    pr-8
+                    text-gray-700 text-sm text-gray-500
+                  "
                 />
                 <svg
                   stroke="currentColor"
@@ -88,7 +147,20 @@
                 </svg>
               </div>
               <button
-                class="bg-indigo-500 ml-8 sm:block hidden text-white py-2 text-sm px-3 rounded focus:outline-none bg-indigo-300 cursor-pointer"
+                class="
+                  bg-indigo-500
+                  ml-8
+                  sm:block
+                  hidden
+                  text-white
+                  py-2
+                  text-sm
+                  px-3
+                  rounded
+                  focus:outline-none
+                  bg-indigo-300
+                  cursor-pointer
+                "
                 @click="clearSearch()"
               >
                 Clear Search
@@ -96,7 +168,7 @@
             </div>
           </div>
           <div class="overflow-auto flex-grow">
-            <div v-for="item in validationQuestions" :key="item.timestamp">
+            <div v-for="(item, index) in validationQuestions" :key="index">
               <ListItem
                 v-if="isSearch(item, item.tab, item.section)"
                 :tab-name="item.tab"
@@ -122,7 +194,18 @@
             </div>
             <button
               @click="clearAll()"
-              class="bg-indigo-600 text-white py-2 text-sm px-3 rounded focus:outline-none hover:bg-indigo-400 shadow cursor-pointer"
+              class="
+                bg-indigo-600
+                text-white
+                py-2
+                text-sm
+                px-3
+                rounded
+                focus:outline-none
+                hover:bg-indigo-400
+                shadow
+                cursor-pointer
+              "
             >
               Clear All
             </button>
@@ -130,7 +213,14 @@
           <div class="p-8 flex flex-1 items-start overflow-auto">
             <div class="flex-1 h-full">
               <div
-                class="h-full w-full bg-transparent text-black mt-2 justify-between"
+                class="
+                  h-full
+                  w-full
+                  bg-transparent
+                  text-black
+                  mt-2
+                  justify-between
+                "
               >
                 <!-- <vue-editor
                   style="width: 100%; height: 100%; box-sizing: border-box"
@@ -142,14 +232,39 @@
                   v-model="mailtextbox"
                   style="width: 100%; height: 100%; box-sizing: border-box"
                   placeholder="Message..."
-                  class="w-full p-2 focus:outline-none focus:ring focus:border-blue-300 border-blue-100 border shadow resize-none text-base rounded-sm box-border bg-white"
+                  class="
+                    w-full
+                    p-2
+                    focus:outline-none focus:ring focus:border-blue-300
+                    border-blue-100 border
+                    shadow
+                    resize-none
+                    text-base
+                    rounded-sm
+                    box-border
+                    bg-white
+                  "
                 ></textarea>
               </div>
             </div>
           </div>
           <button
             @click="copy(mailtextbox)"
-            class="bg-indigo-600 m-1 text-white font-semibold py-2 text-sm px-3 rounded shadow focus:outline-none hover:bg-indigo-500 shadow cursor-pointer"
+            class="
+              bg-indigo-600
+              m-1
+              text-white
+              font-semibold
+              py-2
+              text-sm
+              px-3
+              rounded
+              shadow
+              focus:outline-none
+              hover:bg-indigo-500
+              shadow
+              cursor-pointer
+            "
           >
             Copy
           </button>
@@ -159,34 +274,100 @@
 
     <div class="fixed h-screen right-0 top-0 items-center flex">
       <div
-        class="p-2 bg-white border-l-4 border-t-4 border-b-4 border-indigo-400 inline-flex items-center rounded-tl-lg shadow-2xl rounded-bl-lg z-10 flex-col"
+        class="
+          p-2
+          bg-white
+          border-l-4 border-t-4 border-b-4 border-indigo-400
+          inline-flex
+          items-center
+          rounded-tl-lg
+          shadow-2xl
+          rounded-bl-lg
+          z-10
+          flex-col
+        "
       >
         <button
-          class="bg-gray-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-gray-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="gray"
         ></button>
         <button
-          class="bg-red-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-red-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="red"
         ></button>
         <button
-          class="bg-green-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-green-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="green"
         ></button>
         <button
-          class="bg-blue-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-blue-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="blue"
         ></button>
         <button
-          class="bg-indigo-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-indigo-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="indigo"
         ></button>
         <button
-          class="bg-purple-500 w-5 h-5 rounded-full mb-2 outline-none focus:outline-none"
+          class="
+            bg-purple-500
+            w-5
+            h-5
+            rounded-full
+            mb-2
+            outline-none
+            focus:outline-none
+          "
           theme-button="purple"
         ></button>
         <button
-          class="bg-pink-500 w-5 h-5 rounded-full outline-none focus:outline-none"
+          class="
+            bg-pink-500
+            w-5
+            h-5
+            rounded-full
+            outline-none
+            focus:outline-none
+          "
           theme-button="pink"
         ></button>
       </div>
@@ -203,7 +384,7 @@ import axios from "axios";
 // var gsheet_url =
 //   "https://spreadsheets.google.com/feeds/list/1eNmGC4mZpIGx9vyL_Y0m0wEvsnlREGYoj04LH9atoTg/1/public/values?alt=json";
 let gsheet_url =
-  "https://spreadsheets.google.com/feeds/list/10MKW1D4HVBARRYZMzgksxZ66uZxEG3fvS3L20GyZagc/1/public/values?alt=json";
+  "https://docs.google.com/spreadsheets/d/10MKW1D4HVBARRYZMzgksxZ66uZxEG3fvS3L20GyZagc/gviz/tq?tqx=out:json";
 
 export default {
   name: "App",
@@ -246,19 +427,34 @@ export default {
 
     try {
       const response = await axios.get(gsheet_url);
-      console.log(response);
+
+      const r = response.data.match(
+        /google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/
+      );
       const self = this;
-      response.data.feed.entry.forEach(function (value) {
-        let entry = {
-          tab: value.gsx$tab.$t,
-          section: value.gsx$section.$t,
-          issue: value.gsx$issue.$t,
-          type: value.gsx$type.$t,
-          message: value.gsx$message.$t,
-          timestamp: value.gsx$timestamp.$t,
-        };
-        self.validationQuestions.push(entry);
-      });
+      if (r && r.length == 2) {
+        const obj = JSON.parse(r[1]);
+        const table = obj.table;
+        const header = table.cols.map(({ label }) => label);
+        const rows = table.rows.map(({ c }) =>
+          c.map((e) => (e ? e.v || "" : ""))
+        ); // Modified from const rows = table.rows.map(({c}) => c.map(({v}) => v));
+
+        console.table(header);
+        console.table(rows);
+
+        rows.forEach(function (value) {
+          let entry = {
+            timestamp: value[0],
+            tab: value[1],
+            section: value[2],
+            issue: value[3],
+            type: value[4],
+            message: value[5],
+          };
+          self.validationQuestions.push(entry);
+        });
+      }
     } catch (e) {
       alert(e);
     }
